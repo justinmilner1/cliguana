@@ -125,6 +125,10 @@ func TriggerDeleteAPI(cfg *config.Config, repoPath string) error {
 
 // Wrap the `git clone` command
 func GitCloneAndUpload(cfg *config.Config, repoURL string, repoPath string) error {
+	if repoPath == "." {
+		repoPath = util.ExtractRepoName(repoURL)
+	}
+
 	cmd := exec.Command("git", "clone", repoURL, repoPath)
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

@@ -1,0 +1,12 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	go build -o cliguana
+
+override_dh_auto_install:
+	dh_auto_install
+	install -m 0755 cliguana $(DESTDIR)/usr/bin/cliguana

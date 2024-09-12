@@ -75,7 +75,7 @@ func SendIndexRequest(cfg *config.Config, repository string, remoteType string, 
 	}
 
 	if res.StatusCode >= 200 && res.StatusCode < 300 {
-		fmt.Println("Upload triggered successfully!")
+		fmt.Println("Greptile indexing triggered successfully!")
 	} else {
 		return fmt.Errorf("failed to trigger upload, status: %s, response: %s", res.Status, string(body))
 	}

@@ -31,6 +31,13 @@ func ExtractRepoName(remote string) string {
 	return repo
 }
 
+// ExtractRepoNameFromURL extracts the repository name from the URL
+func ExtractRepoNameFromURL(repoURL string) string {
+	parts := strings.Split(repoURL, "/")
+	repoName := parts[len(parts)-1]
+	return strings.TrimSuffix(repoName, ".git")
+}
+
 // Helper function to map remote URL to remote type
 func GetRemoteType(remote string) string {
 	if strings.Contains(remote, "github.com") {

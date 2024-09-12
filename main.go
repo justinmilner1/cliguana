@@ -86,14 +86,12 @@ func main() {
 		},
 	}
 
-	// ToDO: This should not be an outward facing command, it is just a wrapper of git clone
-	// `autoupload` command to wrap git clone and automatically upload after clone
-	var autouploadCmd = &cobra.Command{
-		Use:    "git clone [repo_url] [repo_path]",
-		Short:  "Automatically upload repository after cloning",
-		Long:   "Clone a repository from the given URL and automatically upload it to the Greptile API.",
-		Args:   cobra.MinimumNArgs(1),
-		Hidden: true,
+	// `clone` command to wrap git clone and automatically upload after clone
+	var cloneCmd = &cobra.Command{
+		Use:   "clone [repo_url] [repo_path]",
+		Short: "Clone a repository and automatically upload it for indexing",
+		Long:  "Clone a repository from the given URL and automatically upload it to the Greptile API for indexing.",
+		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
 			repoURL := args[0]
 			repoPath := "."
@@ -102,7 +100,7 @@ func main() {
 			}
 
 			if err := index.GitCloneAndUpload(cfg, repoURL, repoPath); err != nil {
-				fmt.Println("Error during autoupload:", err)
+				fmt.Println("Error during clone and upload:", err)
 			}
 		},
 	}
@@ -291,7 +289,7 @@ func main() {
 	rootCmd.AddCommand(unindexCmd)
 	rootCmd.AddCommand(enableAutoCmd)
 	rootCmd.AddCommand(disableAutoCmd)
-	rootCmd.AddCommand(autouploadCmd)
+	rootCmd.AddCommand(cloneCmd)
 	rootCmd.AddCommand(checkProgressCmd)
 	rootCmd.AddCommand(monitorProgressCmd)
 	rootCmd.AddCommand(queryCmd)

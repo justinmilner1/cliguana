@@ -46,37 +46,16 @@ Arguments:
 cliguana unindex 
 ```
 
-### 3. Enable Auto-index
-When git clone is called from within this repo, the repo will automatically be indexed by Greptile.
-(wrapper around 'git clone')
+### 3. Clone + index
+Calls git clone and greptile index with one command
 
 Arguments:
 - postion1: path to repo. Default: current directory
 
 ```    
-cliguana autoindex-enable 
+cliguana clone 
 ```
 
-### 3. Disable Auto-index
-When git clone is called from within this repo, the repo will automatically be indexed by Greptile.
-(wrapper around 'git clone')
-
-Arguments:
-- postion1: path to repo. Default: current directory
-
-
-```    
-cliguana autoindex-disable 
-```
-
-### 4. Get auto-index enabled directories
-Print a list of the auto-indexed enabled directories
-Arguments:
-None
-
-```
-cliguana autoindex-list
-```
 
 ### 4. Get Repo info
 Get info about a specific repo
