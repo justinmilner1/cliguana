@@ -2,6 +2,8 @@
 
 A command line interface built for interaction with the Greptile API. 
 
+Currently only supported for ubuntu.
+
 API Reference: https://docs.greptile.com/api-reference/introduction
 
 
@@ -56,18 +58,7 @@ Arguments:
 cliguana clone 
 ```
 
-
-### 4. Get Repo info
-Get info about a specific repo
-
-Arguments:
-- postion1: path to repo. Default: current directory
-
-```
-cliguana info 
-```
-
-### 5. Get Repo indexing progress
+### 4. Get Repo indexing progress
 Get progress of indexing a repo
 
 Arguments:

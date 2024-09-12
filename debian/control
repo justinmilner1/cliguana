@@ -1,12 +1,13 @@
 Source: cliguana
 Section: utils
 Priority: optional
-Maintainer: Justin Milner<justinmilner1@gmail.com>
-Build-Depends: debhelper (>= 9), golang-go
-Standards-Version: 3.9.6
-Homepage: https://docs.greptile.com/quickstart
+Maintainer: Justin Milner <justinmilner1@gmail.com>
+Build-Depends: debhelper (>= 12), golang-go
+Standards-Version: 4.5.0
+Homepage: https://example.com
 
 Package: cliguana
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: CLI tool for interacting with the Greptile API
+ A command line interface built for interaction with the Greptile API.
