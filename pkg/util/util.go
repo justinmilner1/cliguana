@@ -3,6 +3,7 @@ package util
 import (
 	"fmt"
 	"os/exec"
+	"runtime"
 	"strings"
 )
 
@@ -51,8 +52,12 @@ func GetRemoteType(remote string) string {
 }
 
 func GetRemoteUrl(absPath string) string {
-	// Get remote URL
-	remoteCmd := exec.Command("git", "-C", absPath, "remote", "get-url", "origin")
+	var remoteCmd *exec.Cmd
+	if runtime.GOOS == "windows" {
+		remoteCmd = exec.Command("git", "-C", absPath, "remote", "get-url", "origin")
+	} else {
+		remoteCmd = exec.Command("git", "-C", absPath, "remote", "get-url", "origin")
+	}
 	remoteOutput, err := remoteCmd.Output()
 	if err != nil {
 		fmt.Println("Failed to get remote URL:", err)

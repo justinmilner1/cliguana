@@ -35,10 +35,6 @@ func AddRepoToAutoupload(cfg *config.Config, repoPath string) error {
 	// Add new directory
 	cfg.AutouploadDirs = append(cfg.AutouploadDirs, repoPath)
 
-	if err := config.SaveConfig(cfg); err != nil {
-		return fmt.Errorf("error saving configuration: %v", err)
-	}
-
 	fmt.Println("Directory added for autoupload:", repoPath)
 	return nil
 }
@@ -58,11 +54,6 @@ func DeleteRepoFromAutoupload(cfg *config.Config, repoPath string) error {
 	if !found {
 		fmt.Println("Directory not found in autoupload list.")
 		return nil
-	}
-
-	cfg.AutouploadDirs = newDirs
-	if err := config.SaveConfig(cfg); err != nil {
-		return fmt.Errorf("error saving configuration: %v", err)
 	}
 
 	fmt.Println("Directory removed from autoupload:", repoPath)

@@ -1,29 +1,86 @@
-# CLIguana
+# Command Line Iguana
 
 A command line interface built for interaction with the Greptile API. 
 
-Currently only supported for ubuntu.
+Compatible with ubuntu, mac, and windows.
 
 API Reference: https://docs.greptile.com/api-reference/introduction
 
-
 ## Setup:
-The package is currently hosted by launchpad, can be accessed via ppa.
-```
-sudo add-apt-repository ppa:cliguana
-sudo apt-get update
-sudo apt-get install cliguana
-```
-
-You must have github and greptile tokens set to env variables
-```
+#### 1) You must have github and greptile tokens set to env variables
+```sh
+LINUX users:
 export GREPTILE_AUTH_TOKEN=your_greptile_auth_token
 export GITHUB_TOKEN=your_github_token
 
-Add to .bashrc if not already there:
+# Add to .bashrc if not already there:
 echo 'export GREPTILE_AUTH_TOKEN=your_greptile_auth_token' >> ~/.bashrc
 echo 'export GITHUB_TOKEN=your_github_token' >> ~/.bashrc
 ```
+
+```
+MAC users:
+export GREPTILE_AUTH_TOKEN=your_greptile_auth_token
+export GITHUB_TOKEN=your_github_token
+
+# Add to .zshrc if not already there:
+echo 'export GREPTILE_AUTH_TOKEN=your_greptile_auth_token' >> ~/.zshrc
+echo 'export GITHUB_TOKEN=your_github_token' >> ~/.zshrc
+```
+
+```
+WINDOWS users:
+$env:GREPTILE_AUTH_TOKEN="your_greptile_auth_token"
+$env:GITHUB_TOKEN="your_github_token"
+
+# To make it persistent, add to your user environment variables:
+[System.Environment]::SetEnvironmentVariable("GREPTILE_AUTH_TOKEN", "your_greptile_auth_token", "User")
+[System.Environment]::SetEnvironmentVariable("GITHUB_TOKEN", "your_github_token", "User")
+
+```
+
+#### 2) Download the package
+
+Packages are available at https://github.com/justinmilner1/cliguana/releases/tag/cliguana.
+Download the one that matches your system
+
+#### 3) Install the package
+
+Linux users:
+```
+# Download the binary from https://github.com/justinmilner1/cliguana/releases/tag/cliguana
+
+# Make it executable
+chmod +x cliguana-linux
+
+# Move it to a directory in your PATH
+sudo mv cliguana-linux /usr/local/bin/cliguana
+
+```
+
+Mac users:
+```
+# Download the binary from https://github.com/justinmilner1/cliguana/releases/tag/cliguana
+
+# Make it executable
+chmod +x cliguana-macos
+
+# Move it to a directory in your PATH
+sudo mv cliguana-macos /usr/local/bin/cliguana
+```
+
+Windows users:
+```
+# Download the binary from https://github.com/justinmilner1/cliguana/releases/tag/cliguana
+
+# Optionally, move it to a directory in your PATH
+Move-Item -Path "cliguana.exe" -Destination "C:\Program Files\cliguana\cliguana.exe"
+
+# Add the directory to the system PATH (if not already done)
+[System.Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Program Files\cliguana", [System.EnvironmentVariableTarget]::User)
+```
+
+
 
 ## Usage:
 

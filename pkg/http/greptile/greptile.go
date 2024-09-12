@@ -132,9 +132,6 @@ func SendGetInfoRequest(cfg *config.Config, repository string, remote string, br
 // SendQueryRepoRequest sends a semantic query request to the Greptile API
 func SendQueryRepoRequest(cfg *config.Config, repository string, remote string, branch string, query string) (string, error) {
 	url := "https://api.greptile.com/v2/query" // Corrected endpoint URL
-	println("repository:", repository)
-	println("remote:", remote)
-	println("branch:", branch)
 	payload := map[string]interface{}{
 		"messages": []map[string]string{
 			{

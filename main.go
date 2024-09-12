@@ -32,60 +32,6 @@ func main() {
 		return absPath, nil
 	}
 
-	// `enable` command to manually add a directory to autoupload
-	var enableAutoCmd = &cobra.Command{
-		Use:   "autoindex-enable [repo_path]",
-		Short: "Mark a directory for autoupload",
-		Long:  "Add a directory to the autoupload list. Clones within this directory will be automatically indexed.",
-		Args:  cobra.MaximumNArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			repoPath := "."
-			if len(args) > 0 {
-				repoPath = args[0]
-			}
-			absPath, err := getAbsPath(repoPath)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-
-			if err := index.AddRepoToAutoupload(cfg, absPath); err != nil {
-				fmt.Println("Error adding directory:", err)
-			} else {
-				if err := config.SaveConfig(cfg); err != nil {
-					fmt.Println("Error saving configuration:", err)
-				}
-			}
-		},
-	}
-
-	// `disable` command to manually remove a directory from autoupload
-	var disableAutoCmd = &cobra.Command{
-		Use:   "autoindex-disable [repo_path]",
-		Short: "Unmark a directory from autoupload",
-		Long:  "Unmark a directory from the autoupload list. The directory will no longer be automatically uploaded after cloning.",
-		Args:  cobra.MaximumNArgs(1),
-		Run: func(cmd *cobra.Command, args []string) {
-			repoPath := "."
-			if len(args) > 0 {
-				repoPath = args[0]
-			}
-			absPath, err := getAbsPath(repoPath)
-			if err != nil {
-				fmt.Println(err)
-				return
-			}
-
-			if err := index.DeleteRepoFromAutoupload(cfg, absPath); err != nil {
-				fmt.Println("Error deleting directory:", err)
-			} else {
-				if err := config.SaveConfig(cfg); err != nil {
-					fmt.Println("Error saving configuration:", err)
-				}
-			}
-		},
-	}
-
 	// `clone` command to wrap git clone and automatically upload after clone
 	var cloneCmd = &cobra.Command{
 		Use:   "clone [repo_url] [repo_path]",
@@ -287,8 +233,6 @@ func main() {
 
 	rootCmd.AddCommand(indexCmd)
 	rootCmd.AddCommand(unindexCmd)
-	rootCmd.AddCommand(enableAutoCmd)
-	rootCmd.AddCommand(disableAutoCmd)
 	rootCmd.AddCommand(cloneCmd)
 	rootCmd.AddCommand(checkProgressCmd)
 	rootCmd.AddCommand(monitorProgressCmd)
